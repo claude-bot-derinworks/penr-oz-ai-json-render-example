@@ -4,7 +4,7 @@
  * Renders a flexible layout wrapper using the .stack CSS utility.
  * Supports both column and row directions with configurable gap.
  */
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { ComponentRenderProps } from '@json-render/react';
 import type { ContainerProps } from '../components/Container';
 
@@ -29,7 +29,7 @@ export function ContainerRenderer({
   const { direction = 'column', gap = 'medium' } = element.props;
 
   const className = `stack ${direction}`;
-  const style: React.CSSProperties = {
+  const style: CSSProperties = {
     gap: gapSizes[gap] || gapSizes.medium,
   };
 

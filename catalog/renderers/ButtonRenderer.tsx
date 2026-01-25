@@ -4,6 +4,7 @@
  * Renders an interactive button that can trigger actions.
  * Supports multiple visual variants and disabled state.
  */
+import type { CSSProperties } from 'react';
 import type { ComponentRenderProps } from '@json-render/react';
 import type { ButtonProps } from '../components/Button';
 
@@ -11,7 +12,7 @@ import type { ButtonProps } from '../components/Button';
  * CSS styles for button variants.
  * Applied inline to work without additional CSS setup.
  */
-const variantStyles: Record<string, React.CSSProperties> = {
+const variantStyles: Record<string, CSSProperties> = {
   primary: {
     backgroundColor: '#1d4ed8',
     color: '#ffffff',
@@ -32,7 +33,7 @@ const variantStyles: Record<string, React.CSSProperties> = {
 /**
  * Base button styles applied to all variants.
  */
-const baseStyles: React.CSSProperties = {
+const baseStyles: CSSProperties = {
   padding: '10px 20px',
   borderRadius: '8px',
   fontSize: '14px',
@@ -44,7 +45,7 @@ const baseStyles: React.CSSProperties = {
 /**
  * Disabled button styles.
  */
-const disabledStyles: React.CSSProperties = {
+const disabledStyles: CSSProperties = {
   opacity: 0.5,
   cursor: 'not-allowed',
 };
