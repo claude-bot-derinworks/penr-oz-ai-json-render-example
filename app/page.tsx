@@ -1,15 +1,59 @@
-const cards = [
-  {
-    title: 'Prompt-driven JSON UI',
-    subtitle: 'Describe a UI in JSON and render it instantly.',
-    badges: ['AI Prompt', 'JSON Spec', 'Instant UI'],
+'use client';
+
+import { ValidatedRenderer } from '../catalog/renderers/ValidatedRenderer';
+import { registry } from '../catalog/renderers';
+
+/**
+ * A valid UI tree that passes catalog schema validation.
+ */
+const validTree = {
+  root: 'root',
+  elements: {
+    root: {
+      key: 'root',
+      type: 'Container',
+      props: { direction: 'column', gap: 'medium' },
+      children: ['heading', 'card'],
+    },
+    heading: {
+      key: 'heading',
+      type: 'Text',
+      props: { content: 'AI-Generated UI', variant: 'heading' },
+      children: [],
+      parentKey: 'root',
+    },
+    card: {
+      key: 'card',
+      type: 'Card',
+      props: { title: 'Welcome', subtitle: 'This UI was validated before rendering.' },
+      children: ['cta'],
+      parentKey: 'root',
+    },
+    cta: {
+      key: 'cta',
+      type: 'Button',
+      props: { label: 'Get Started', variant: 'primary' },
+      children: [],
+      parentKey: 'card',
+    },
   },
-  {
-    title: 'Plan Builder',
-    subtitle: 'Pick a plan and customize your add-ons.',
-    badges: ['Starter', 'Pro'],
+};
+
+/**
+ * An invalid UI tree that will be rejected by validation.
+ * Uses an unknown component type and missing required props.
+ */
+const invalidTree = {
+  root: 'root',
+  elements: {
+    root: {
+      key: 'root',
+      type: 'UnknownWidget',
+      props: { foo: 'bar' },
+      children: [],
+    },
   },
-];
+};
 
 export default function HomePage() {
   return (
@@ -17,31 +61,18 @@ export default function HomePage() {
       <header className="card">
         <h1 className="title">JSON Render Example</h1>
         <p className="subtitle">
-          Minimal Next.js skeleton ready for @json-render integration.
+          Schema validation ensures only valid AI output reaches the renderer.
         </p>
       </header>
-      <section className="stack row">
-        {cards.map((card) => (
-          <article className="card" key={card.title}>
-            <h2 className="card-title">{card.title}</h2>
-            <p className="subtitle">{card.subtitle}</p>
-            <div className="stack row">
-              {card.badges.map((badge) => (
-                <span className="badge" key={badge}>
-                  {badge}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
+
+      <section className="stack column">
+        <h2 className="card-title">Valid AI Output</h2>
+        <ValidatedRenderer tree={validTree} registry={registry} />
       </section>
-      <section className="card">
-        <h2 className="card-title">Next steps</h2>
-        <ol className="list">
-          <li>Wire @json-render/react into this page.</li>
-          <li>Translate prompt output into JSON specs.</li>
-          <li>Render dynamic UI nodes in real time.</li>
-        </ol>
+
+      <section className="stack column">
+        <h2 className="card-title">Invalid AI Output</h2>
+        <ValidatedRenderer tree={invalidTree} registry={registry} />
       </section>
     </div>
   );

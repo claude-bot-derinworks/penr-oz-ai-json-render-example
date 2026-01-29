@@ -17,6 +17,7 @@ export { TextRenderer } from './TextRenderer';
 export { ButtonRenderer } from './ButtonRenderer';
 export { CardRenderer } from './CardRenderer';
 export { ContainerRenderer } from './ContainerRenderer';
+export { ValidatedRenderer } from './ValidatedRenderer';
 
 /**
  * Pre-configured component registry.

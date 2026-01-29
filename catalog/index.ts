@@ -69,6 +69,12 @@ export type CatalogComponentName = keyof typeof catalog.components;
 export * from './components';
 
 /**
+ * Re-export validation utilities
+ */
+export { validateUITree } from './validation';
+export type { ValidationResult, ValidationIssue } from './validation';
+
+/**
  * Re-export the catalog type for type inference
  */
 export type { Catalog } from '@json-render/core';

@@ -78,3 +78,39 @@ body {
   padding-left: 20px;
   color: #475569;
 }
+
+.validation-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.validation-error-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #991b1b;
+}
+
+.validation-error-subtitle {
+  font-size: 14px;
+  color: #b91c1c;
+  margin: 0;
+}
+
+.validation-error-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #7f1d1d;
+}
+
+.validation-error-list code {
+  background: #fee2e2;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 12px;
+}
